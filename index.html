@@ -1,146 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" translate="no">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ハラハラ(sm9307581)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title class="notranslate">ハラハラ - sm9307581</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{
-  background:#071a16;
-  color:#7ee8c6;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  padding:24px 16px;
-  line-height:1.55;
-}
-.container{
-  max-width:680px;
-  margin:0 auto;
-}
-h1{
-  font-size:34px;
-  margin-bottom:28px;
-  color:#b7f5dc;
-  font-weight:600;
-  letter-spacing:1px;
-}
-.divider{
-  height:2px;
-  background:#13352f;
-  margin-bottom:32px;
-  border-radius:99px;
-}
-.card{
-  background:#0c2722;
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:22px;
-  box-shadow:0 6px 22px rgba(0,0,0,0.45);
-  border:1px solid #17443a;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-}
-.card:hover{
-  transform: translateY(-3px);
-  box-shadow:0 10px 28px rgba(0,0,0,0.55);
-}
-.card-title{
-  font-size:26px;
-  font-weight:600;
-  margin-bottom:14px;
-  color:#d7ffee;
-}
-.meta-line{
-  font-size:15px;
-  color:#7ee8c6;
-  margin:6px 0;
-}
-.download-row{
-  font-size:15px;
-  margin:10px 0 4px 0;
-}
-.download-row a{
-  color:#58d6ff;
-  text-decoration:underline;
-}
-.tags-wrap{
-  margin:18px 0;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.tag{
-  background:#17443a;
-  color:#aef7dc;
-  padding:6px 12px;
-  border-radius:12px;
-  font-size:14px;
-}
-.thumb-box{
-  width:100%;
-  margin-top:12px;
-  border-radius:14px;
-  overflow:hidden;
-  background:#061412;
-}
-.thumb-box img{
-  width:100%;
-  display:block;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
+body{background:#0c2222;color:#88e2bc;padding:24px;line-height:1.6}
+.card{background:#132f2f;border-radius:22px;padding:28px;max-width:520px;margin:0 auto}
+h2{font-size:34px;margin-bottom:18px}
+.info-line{margin:9px 0;font-size:18px}
+video{width:100%;border-radius:14px;margin:16px 0}
+img.thumb{width:100%;border-radius:14px;margin:12px 0}
+.btn-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:12px;border-radius:14px;text-decoration:none}
+.notranslate{translate:no !important}
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>悬疑</h1>
-  <div class="divider"></div>
 
-  <div id="cardList"></div>
+<div class="card">
+  <h2 class="notranslate">ハラハラ</h2>
+
+  <div class="info-line notranslate">视频ID：sm9307581</div>
+  <div class="info-line notranslate">发布者：裏切りマンキーコング (20)</div>
+  <div class="info-line notranslate">发布时间：2010年01月06日 14:20:59 ニコニコ動画</div>
+  <div class="info-line">时长：1分11秒</div>
+  <div class="info-line">状态：个人归档备份</div>
+
+  <img class="thumb notranslate" alt="ハラハラサムネ"
+src="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/thumb.jpg">
+
+  <video controls>
+    <source src="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/hara.mp4" type="video/mp4">
+    视频加载失败：检查文件名 / raw链接 / 是否上传成功
+  </video>
+
+  <div style="margin:14px 0;">下载链接</div>
+  <div class="btn-group">
+    <a class="btn" href="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/hara.mp4">下载视频</a>
+    <a class="btn" href="#">备用1</a>
+    <a class="btn" href="#">备用2</a>
+    <a class="btn" href="#">备用3</a>
+  </div>
 </div>
 
-<script>
-const list = [
-  {
-    "title": "ハラハラ",
-    "sm": "sm9307581",
-    "author": "裏切りマンキーコング (20)",
-    "date": "2010年01月06日 14:20:59 ニコニコ動画(9) : 6,127日経過",
-    "duration": "1分11秒",
-    "status": "削除/非表示",
-    "download_url": "https://github.com/3416672323xsaaa-svg/hrhr/raw/refs/heads/main/hrhr%20%5Bsm9577483%5D.mp4",
-    "thumb": "",
-    "tags": ["必須アモト酸(10359)","エア本爆発祭'10(53)","例のアレ(377908)","サムネバキューム(4892)"]
-  }
-];
-
-const wrap=document.getElementById("cardList");
-list.forEach(item=>{
-  const div=document.createElement("div");
-  div.className="card";
-
-  let downloadHtml = "";
-  if(item.download_url && item.download_url.trim() !== ""){
-    downloadHtml = `<div class="download-row"><a href="${item.download_url}">下载链接</a></div>`;
-  }
-
-  div.innerHTML=`
-    <div class="card-title">${item.title}</div>
-    <div class="meta-line">视频ID：${item.sm}</div>
-    <div class="meta-line">发布者：${item.author}</div>
-    <div class="meta-line">发布时间：${item.date}</div>
-    <div class="meta-line">时长：${item.duration}</div>
-    <div class="meta-line">状态：${item.status}</div>
-    ${downloadHtml}
-    <div class="tags-wrap">
-      ${item.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
-    </div>
-    <div class="thumb-box">
-      <img src="${item.thumb}" alt="缩略图" loading="lazy">
-    </div>
-  `;
-  wrap.appendChild(div);
-})
-.catch(err=>{
-  document.getElementById("cardList").innerHTML=`<div style="color:#ff9494">读取数据失败：${err}</div>`;
-});
-</script>
 </body>
 </html>
