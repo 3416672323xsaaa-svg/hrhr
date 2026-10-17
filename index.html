@@ -4,47 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<title class="notranslate">ハラハラ - sm9307581</title>
+<title class="notranslate">ハラハラ‑sm9307581</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
-body{background:#0c2222;color:#88e2bc;padding:24px;line-height:1.6}
-.card{background:#132f2f;border-radius:22px;padding:28px;max-width:520px;margin:0 auto}
-h2{font-size:34px;margin-bottom:18px}
-.info-line{margin:9px 0;font-size:18px}
-video{width:100%;border-radius:14px;margin:16px 0}
-img.thumb{width:100%;border-radius:14px;margin:12px 0}
-.btn-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:12px;border-radius:14px;text-decoration:none}
-.notranslate{translate:no !important}
+.notranslate { translate: no !important; }
+body{background:#0c2222;color:#88e2bc;padding:22px}
+.container{max-width:530px;margin:24px auto}
+.card{background:#132f2f;border-radius:22px;padding:28px;margin-bottom:20px}
+.card h2{font-size:36px;margin-bottom:18px}
+.info{margin:9px 0;font-size:18px}
+img.thumb{width:100%;border-radius:14px;margin:14px 0}
+video{width:100%;border-radius:14px;margin:14px 0}
+.dl-text{margin:16px 0 12px 0;color:#99eed2}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:13px;border-radius:14px;text-decoration:none}
 </style>
 </head>
 <body>
-
-<div class="card">
-  <h2 class="notranslate">ハラハラ</h2>
-
-  <div class="info-line notranslate">视频ID：sm9307581</div>
-  <div class="info-line notranslate">发布者：裏切りマンキーコング (20)</div>
-  <div class="info-line notranslate">发布时间：2010年01月06日 14:20:59 ニコニコ動画</div>
-  <div class="info-line">时长：1分11秒</div>
-  <div class="info-line">状态：个人归档备份</div>
-
-  <img class="thumb notranslate" alt="ハラハラサムネ"
-src="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/thumb.jpg">
-
-  <video controls>
-    <source src="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/hara.mp4" type="video/mp4">
-    视频加载失败：检查文件名 / raw链接 / 是否上传成功
-  </video>
-
-  <div style="margin:14px 0;">下载链接</div>
-  <div class="btn-group">
-    <a class="btn" href="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/hara.mp4">下载视频</a>
-    <a class="btn" href="#">备用1</a>
-    <a class="btn" href="#">备用2</a>
-    <a class="btn" href="#">备用3</a>
-  </div>
+<div class="container" id="app">
+  <!-- ⚠️这里已经完全清空！再也没有「悬疑」！所有内容由JSON输出 -->
 </div>
 
+<script>
+async function loadData(){
+  const res = await fetch("hara.json");
+  const data = await res.json();
+  const app = document.getElementById("app");
+
+  let html = `
+<div class="card">
+  <h2 class="notranslate">${data.title}</h2>
+  <div class="info notranslate">视频ID：${data.smid}</div>
+  <div class="info notranslate">发布者：${data.author}</div>
+  <div class="info notranslate">发布时间：${data.time}</div>
+  <div class="info">时长：${data.duration}</div>
+  <div class="info">状态：${data.status}</div>
+`;
+
+  if(data.thumb){
+    html += `<img class="thumb notranslate" alt="${data.title}" src="${data.thumb}">`;
+  }
+
+  if(data.video){
+    html += `
+<video controls>
+  <source src="${data.video}" type="video/mp4">
+  视频加载失败，请检查raw直链
+</video>`;
+  }
+
+  html += `
+<div class="dl-text">下载链接</div>
+<div class="btns">
+  <a class="btn" href="${data.video}" target="_blank">下载</a>
+  <a class="btn" href="${data.link1}" target="_blank">备用1</a>
+  <a class="btn" href="${data.link2}" target="_blank">备用2</a>
+  <a class="btn" href="${data.link3}" target="_blank">备用3</a>
+</div>
+</div>`;
+  app.innerHTML = html;
+}
+loadData().catch(err=>{
+  document.getElementById("app").innerText = "JSON读取失败："+err;
+});
+</script>
 </body>
 </html>
