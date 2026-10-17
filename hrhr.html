@@ -7,8 +7,8 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{
-  background:#121216;
-  color:#e9e9ef;
+  background:#071a16;
+  color:#7ee8c6;
   font-family:system-ui,-apple-system,Segoe UI,Roboto;
   padding:24px 16px;
   line-height:1.55;
@@ -20,39 +20,47 @@ body{
 h1{
   font-size:34px;
   margin-bottom:28px;
-  color:#f0f0f8;
+  color:#b7f5dc;
   font-weight:600;
   letter-spacing:1px;
 }
 .divider{
   height:2px;
-  background:#2a2a33;
+  background:#13352f;
   margin-bottom:32px;
   border-radius:99px;
 }
 .card{
-  background:#1b1b24;
+  background:#0c2722;
   border-radius:18px;
   padding:22px;
   margin-bottom:22px;
-  box-shadow:0 6px 22px rgba(0,0,0,0.35);
-  border:1px solid #272734;
+  box-shadow:0 6px 22px rgba(0,0,0,0.45);
+  border:1px solid #17443a;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 .card:hover{
   transform: translateY(-3px);
-  box-shadow:0 10px 28px rgba(0,0,0,0.42);
+  box-shadow:0 10px 28px rgba(0,0,0,0.55);
 }
 .card-title{
   font-size:26px;
   font-weight:600;
   margin-bottom:14px;
-  color:#ffffff;
+  color:#d7ffee;
 }
 .meta-line{
   font-size:15px;
-  color:#b4b4c8;
+  color:#7ee8c6;
   margin:6px 0;
+}
+.download-row{
+  font-size:15px;
+  margin:10px 0 4px 0;
+}
+.download-row a{
+  color:#58d6ff;
+  text-decoration:underline;
 }
 .tags-wrap{
   margin:18px 0;
@@ -61,8 +69,8 @@ h1{
   flex-wrap:wrap;
 }
 .tag{
-  background:#2c2c3d;
-  color:#e2e6f2;
+  background:#17443a;
+  color:#aef7dc;
   padding:6px 12px;
   border-radius:12px;
   font-size:14px;
@@ -72,7 +80,7 @@ h1{
   margin-top:12px;
   border-radius:14px;
   overflow:hidden;
-  background:#0a0a0e;
+  background:#061412;
 }
 .thumb-box img{
   width:100%;
@@ -85,39 +93,53 @@ h1{
   <h1>悬疑</h1>
   <div class="divider"></div>
 
-  <div id="cardList">
-    <!-- JS渲染卡片在这里 -->
-  </div>
+  <div id="cardList"></div>
 </div>
 
 <script>
-// 如果你的数据文件名还是 data.json 就不用动
-fetch("data.json")
-.then(res=>res.json())
-.then(list=>{
-  const wrap=document.getElementById("cardList");
-  list.forEach(item=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`
-      <div class="card-title">${item.title}</div>
-      <div class="meta-line">视频ID：${item.sm}</div>
-      <div class="meta-line">发布者：${item.author}</div>
-      <div class="meta-line">发布时间：${item.date}</div>
-      <div class="meta-line">时长：${item.duration}</div>
-      <div class="meta-line">状态：${item.status}</div>
-      <div class="tags-wrap">
-        ${item.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
-      </div>
-      <div class="thumb-box">
-        <img src="${item.thumb}" alt="缩略图" loading="lazy">
-      </div>
-    `;
-    wrap.appendChild(div);
-  })
+const list = [
+  {
+    "title": "ハラハラ",
+    "sm": "sm9307581",
+    "author": "裏切りマンキーコング (20)",
+    "date": "2010年01月06日 14:20:59 ニコニコ動画(9) : 6,127日経過",
+    "duration": "1分11秒",
+    "status": "削除/非表示",
+    "download_url": "https://github.com/3416672323xsaaa-svg/hrhr/raw/refs/heads/main/hrhr%20%5Bsm9577483%5D.mp4",
+    "thumb": "",
+    "tags": ["必須アモト酸(10359)","エア本爆発祭'10(53)","例のアレ(377908)","サムネバキューム(4892)"]
+  }
+];
+
+const wrap=document.getElementById("cardList");
+list.forEach(item=>{
+  const div=document.createElement("div");
+  div.className="card";
+
+  let downloadHtml = "";
+  if(item.download_url && item.download_url.trim() !== ""){
+    downloadHtml = `<div class="download-row"><a href="${item.download_url}">下载链接</a></div>`;
+  }
+
+  div.innerHTML=`
+    <div class="card-title">${item.title}</div>
+    <div class="meta-line">视频ID：${item.sm}</div>
+    <div class="meta-line">发布者：${item.author}</div>
+    <div class="meta-line">发布时间：${item.date}</div>
+    <div class="meta-line">时长：${item.duration}</div>
+    <div class="meta-line">状态：${item.status}</div>
+    ${downloadHtml}
+    <div class="tags-wrap">
+      ${item.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+    </div>
+    <div class="thumb-box">
+      <img src="${item.thumb}" alt="缩略图" loading="lazy">
+    </div>
+  `;
+  wrap.appendChild(div);
 })
 .catch(err=>{
-  document.getElementById("cardList").innerHTML=`<div style="color:#ff8888">读取数据失败：${err}</div>`;
+  document.getElementById("cardList").innerHTML=`<div style="color:#ff9494">读取数据失败：${err}</div>`;
 });
 </script>
 </body>
