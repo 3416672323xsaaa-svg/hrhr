@@ -3,26 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache,no-store">
 <meta name="google" content="notranslate">
-<title>ハラハラ‑sm9307581</title>
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>ハラハラ-sm9307581</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
-body{background:#0c2222;color:#88e2bc;padding:22px}
-.container{max-width:540px;margin:24px auto}
-.card{background:#132f2f;border-radius:22px;padding:28px}
-.card h2{font-size:34px;margin-bottom:18px}
-.line{margin:9px 0;font-size:17px}
-.label{margin:22px 0 12px;color:#99eed2;font-weight:bold}
-video{width:100%;border-radius:14px;margin:8px 0;background:#000}
-.btns{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
-a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:14px;border-radius:14px;text-decoration:none}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: #0c2222;
+  color: #88e2bc;
+  padding: 22px;
+}
+
+.container {
+  max-width: 540px;
+  margin: 24px auto;
+}
+
+.card {
+  background: #132f2f;
+  border-radius: 22px;
+  padding: 28px;
+}
+
+h2 {
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+.line {
+  margin: 9px 0;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.label {
+  margin: 22px 0 12px;
+  color: #99eed2;
+  font-weight: bold;
+}
+
+video {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  border-radius: 14px;
+  margin: 8px 0;
+  background: #000;
+}
+
+.btns {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+a.btn {
+  display: block;
+  text-align: center;
+  background: #20594e;
+  color: #b2f2dd;
+  padding: 14px;
+  border-radius: 14px;
+  text-decoration: none;
+}
+
+#playStatus {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 420px) {
+  body { padding: 12px; }
+  .card { padding: 20px; }
+  h2 { font-size: 29px; }
+}
 </style>
 </head>
+
 <body>
 <div class="container">
 <div class="card">
+
   <h2>ハラハラ</h2>
+
   <div class="line">動画ID：sm9307581</div>
   <div class="line">ジャンル：‑</div>
   <div class="line">投稿時間：2010年01月06日 14:20:59</div>
@@ -33,28 +108,74 @@ a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:1
   <div class="line">登録タグ：必須アモト酸、空気書爆発祭'10、那東西、縮略圖、真空</div>
 
   <div class="label">播放</div>
-  <video id="myVideo" controls preload="metadata" crossorigin="anonymous">
-    <p>浏览器不支持播放，请下载后观看</p>
+
+  <video id="myVideo"
+         controls
+         playsinline
+         crossorigin="anonymous"
+         preload="metadata">
+    お使いのブラウザはHTML5動画に対応していません。
   </video>
 
-  <div class="label">下载链接</div>
-  <div class="btns">
-    <a class="btn" href="https://github.com/3416672323xsaaa-svg/hrhr/raw/refs/heads/main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4" target="_blank">直接下载</a>
+  <div id="playStatus" role="status">
+    待機中…
   </div>
+
+  <div class="label">下载链接</div>
+
+  <div class="btns">
+    <a class="btn"
+       href="https://raw.githubusercontent.com/3416672323xsaaa-svg/hrhr/main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4"
+       target="_blank"
+       rel="noopener noreferrer">
+       打开 / 下载原始 MP4
+    </a>
+  </div>
+
 </div>
 </div>
 
 <script>
-// 使用带 @main 的标准 jsDelivr 地址，没有外部代理
-const videoUrl = "https://cdn.jsdelivr.net/gh/3416672323xsaaa-svg/hrhr@main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4";
-window.addEventListener("DOMContentLoaded", function(){
-  const v = document.getElementById("myVideo");
-  // 微小延时，让CDN的重定向链路完成
-  setTimeout(()=>{
-    v.src = videoUrl;
-    v.load();
-  },350);
-});
+(function () {
+  // ✅已经填好这次全新上传、编码完好的jsDelivr源
+  const VIDEO_SRC = "https://cdn.jsdelivr.net/gh/3416672323xsaaa-svg@main/hrhr/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4";
+
+  const video = document.getElementById("myVideo");
+  const status = document.getElementById("playStatus");
+
+  video.addEventListener("loadedmetadata", ()=>{
+    status.textContent = "✅视频信息已载入，可以点击播放。";
+  });
+  video.addEventListener("canplay", ()=>{
+    status.textContent = "✅视频已就绪。";
+  });
+  video.addEventListener("error", ()=>{
+    const e = video.error;
+    let msg = "⚠️加载失败";
+    if(e){
+      switch(e.code){
+        case 2: msg="⚠️网络异常，可以尝试下载"; break;
+        case 3: msg="⚠️解码失败（CDN节点波动）"; break;
+        case 4: msg="⚠️视频源不可用，请确认文件上传完整"; break;
+      }
+    }
+    status.textContent = msg + " → 使用下方下载按钮备用";
+  });
+
+  function delayedLoad(){
+    status.textContent = "正在加载视频…";
+    setTimeout(()=>{
+      video.src = VIDEO_SRC;
+      video.load();
+    },650);
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", delayedLoad);
+  }else{
+    delayedLoad();
+  }
+})();
 </script>
 </body>
 </html>
