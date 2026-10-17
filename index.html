@@ -3,289 +3,394 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0c2222">
-  <meta name="google" content="notranslate">
-  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#101b22">
   <title>ハラハラ - sm9307581</title>
-
+  <meta name="description" content="ハラハラ（sm9307581）视频档案">
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0c2222;
-      --card: #132f2f;
-      --text: #b2f2dd;
-      --muted: #99eed2;
-      --button: #20594e;
-      --button-hover: #287361;
-      --border: #28504a;
-      --error: #ffaaa5;
+      --bg: #10171d;
+      --panel: #19232c;
+      --panel2: #202d37;
+      --text: #edf4f7;
+      --muted: #9aadb8;
+      --accent: #64d8c8;
+      --border: #30414b;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      padding: 20px;
-      background: var(--bg);
-      color: #88e2bc;
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      line-height: 1.65;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at top, #203b43 0%, transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI",
+        "Noto Sans SC", "Microsoft YaHei", sans-serif;
     }
 
-    .container {
-      width: 100%;
-      max-width: 580px;
-      margin: 24px auto;
+    .page {
+      width: min(960px, 100%);
+      margin: auto;
+      padding: 28px 18px 48px;
     }
 
-    .card {
-      padding: 26px;
-      background: var(--card);
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      font-size: 14px;
+      letter-spacing: .12em;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .video-id {
       border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, .18);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
     }
 
     h1 {
-      margin: 0 0 20px;
-      font-size: clamp(28px, 6vw, 35px);
-      line-height: 1.3;
+      font-size: clamp(27px, 5vw, 42px);
+      margin: 0 0 8px;
+      line-height: 1.25;
       overflow-wrap: anywhere;
     }
 
-    .line {
-      margin: 9px 0;
-      font-size: 16px;
-      color: #c2e8dc;
-      overflow-wrap: anywhere;
-    }
-
-    .label {
-      margin: 24px 0 10px;
+    .subtitle {
       color: var(--muted);
-      font-weight: 700;
-      font-size: 17px;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: rgba(25, 35, 44, .96);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 55px #0003;
+    }
+
+    .player-wrap {
+      background: #050708;
     }
 
     video {
       display: block;
       width: 100%;
-      max-height: 75vh;
-      min-height: 180px;
-      margin: 8px 0;
-      background: #000;
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      max-height: 72vh;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: #050708;
     }
 
-    .status {
-      margin-top: 10px;
-      padding: 11px 13px;
-      background: rgba(0, 0, 0, .15);
-      border-radius: 10px;
+    .player-status {
+      padding: 12px 16px;
       color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      background: #131d24;
+      line-height: 1.6;
+    }
+
+    .player-status.error { color: #ff9d9d; }
+    .player-status.success { color: var(--accent); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #09201f;
+      font-weight: 750;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .button.secondary {
+      background: var(--panel2);
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .button:active { transform: scale(.98); }
+
+    .details { padding: 20px 18px; }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 0 0 14px;
+    }
+
+    .metadata {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--border);
+    }
+
+    .item {
+      background: var(--panel);
+      padding: 14px;
+      min-width: 0;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .value {
       font-size: 14px;
       overflow-wrap: anywhere;
+      line-height: 1.7;
     }
 
-    .status.error {
-      color: var(--error);
-    }
-
-    .buttons {
-      display: grid;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .btn {
-      display: block;
-      padding: 14px 16px;
-      background: var(--button);
-      color: var(--text);
-      border: 1px solid transparent;
-      border-radius: 14px;
-      text-align: center;
+    .value a {
+      color: var(--accent);
       text-decoration: none;
-      font-weight: 650;
-      overflow-wrap: anywhere;
-      transition: background .18s ease;
     }
 
-    .btn:hover,
-    .btn:focus-visible {
-      background: var(--button-hover);
+    .value a:hover { text-decoration: underline; }
+
+    .wide { grid-column: 1 / -1; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .btn:focus-visible {
-      outline: 2px solid var(--text);
-      outline-offset: 3px;
+    .tag {
+      border: 1px solid #3b5960;
+      background: #20363d;
+      color: #b9eee7;
+      border-radius: 7px;
+      padding: 6px 9px;
+      font-size: 12px;
     }
 
     .note {
-      margin-top: 16px;
-      color: #a3c9bc;
-      font-size: 13px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 18px;
     }
 
-    @media (max-width: 420px) {
-      body {
-        padding: 12px;
-      }
+    footer {
+      text-align: center;
+      color: #71838d;
+      font-size: 12px;
+      margin-top: 22px;
+    }
 
-      .container {
-        margin: 12px auto;
-      }
-
-      .card {
-        padding: 19px;
-      }
+    @media (max-width: 540px) {
+      .page { padding: 20px 12px 36px; }
+      .metadata { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+      header { align-items: flex-start; }
+      .actions .button { flex: 1 1 130px; }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
+  <main class="page">
+    <header>
+      <div class="brand">视频档案 · VIDEO ARCHIVE</div>
+      <div class="video-id">NICONICO · sm9307581</div>
+    </header>
+
+    <h1>ハラハラ</h1>
+    <div class="subtitle">视频资料与在线播放</div>
+
     <section class="card">
-      <h1>ハラハラ</h1>
-
-      <div class="line">视频 ID：sm9307581</div>
-      <div class="line">ジャンル：-</div>
-      <div class="line">投稿时间：2010年01月06日 14:20:59</div>
-      <div class="line">视频时长：1分11秒</div>
-      <div class="line">投稿者：裏切りマンキーコング (20)</div>
-      <div class="line">说明文：nom</div>
-      <div class="line">状态：删除/隐藏（原页面记录）</div>
-      <div class="line">标签：必須アモト酸、空気書爆発祭'10、那東西、縮略圖、真空</div>
-
-      <div class="label">视频播放</div>
-
-      <video
-        id="myVideo"
-        controls
-        playsinline
-        preload="metadata"
-      >
-        当前浏览器不支持 HTML5 视频播放，请使用下载按钮。
-      </video>
-
-      <div
-        id="playStatus"
-        class="status"
-        role="status"
-        aria-live="polite"
-      >正在连接视频……</div>
-
-      <div class="label">下载视频</div>
-
-      <div class="buttons">
-        <a
-          id="downloadLink"
-          class="btn"
-          href="https://raw.githubusercontent.com/3416672323xsaaa-svg/hrhr/main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4"
-          target="_blank"
-          rel="noopener noreferrer"
-        >打开 / 下载原始 MP4</a>
+      <div class="player-wrap">
+        <video id="video" controls playsinline preload="metadata">
+          您的浏览器不支持 HTML5 视频播放。
+        </video>
       </div>
 
-      <p class="note">
-        如果视频无法播放，请检查网络或使用下载链接。
-        如果文件能下载但无法播放，可能是视频编码不受支持或文件本身有问题。
-      </p>
+      <div class="player-status" id="status" role="status" aria-live="polite">
+        正在加载视频……
+      </div>
+
+      <div class="actions">
+        <button class="button" id="playButton" type="button">
+          ▶ 播放视频
+        </button>
+
+        <a class="button secondary" id="downloadButton" href="#">
+          ↓ 保存视频
+        </a>
+
+        <a class="button secondary"
+           href="https://www.nicovideo.jp/watch/sm9307581"
+           target="_blank" rel="noopener noreferrer">
+          查看 Niconico 原页面
+        </a>
+      </div>
+
+      <div class="details">
+        <h2 class="section-title">视频信息</h2>
+
+        <div class="metadata">
+          <div class="item">
+            <div class="label">原始标题</div>
+            <div class="value">ハラハラ</div>
+          </div>
+
+          <div class="item">
+            <div class="label">视频编号</div>
+            <div class="value">
+              <a href="https://www.nicovideo.jp/watch/sm9307581"
+                 target="_blank" rel="noopener noreferrer">sm9307581</a>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="label">投稿时间</div>
+            <div class="value">2010年01月06日 14:20:59</div>
+          </div>
+
+          <div class="item">
+            <div class="label">视频时长</div>
+            <div class="value">1分11秒</div>
+          </div>
+
+          <div class="item">
+            <div class="label">投稿者</div>
+            <div class="value">裏切りマンキーコング (20)</div>
+          </div>
+
+          <div class="item">
+            <div class="label">视频分类</div>
+            <div class="value">-</div>
+          </div>
+
+          <div class="item">
+            <div class="label">视频简介</div>
+            <div class="value">-</div>
+          </div>
+
+          <div class="item">
+            <div class="label">原始状态</div>
+            <div class="value">削除/非表示</div>
+          </div>
+
+          <div class="item wide">
+            <div class="label">原始标签</div>
+            <div class="tags">
+              <span class="tag">必須アモト酸 (10359)</span>
+              <span class="tag">エア本爆発祭'10 (53)</span>
+              <span class="tag">例のアレ (377908)</span>
+              <span class="tag">サムネバキューム (4892)</span>
+            </div>
+          </div>
+
+          <div class="item wide">
+            <div class="label">Hatena 收藏记录</div>
+            <div class="value">9 位用户 · 2015-06-03 14:06:31</div>
+          </div>
+        </div>
+
+        <p class="note">
+          说明：以上日文标题、投稿信息及标签保留原始写法。
+          视频状态与收藏记录来自提供的资料，不代表当前平台的实时状态。
+        </p>
+      </div>
     </section>
+
+    <footer>视频档案 · sm9307581</footer>
   </main>
 
   <script>
-    "use strict";
+    const video = document.getElementById("video");
+    const status = document.getElementById("status");
+    const playButton = document.getElementById("playButton");
+    const downloadButton = document.getElementById("downloadButton");
 
-    const VIDEO_URLS = [
-      "https://cdn.jsdelivr.net/gh/3416672323xsaaa-svg/hrhr@main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4",
-      "https://raw.githubusercontent.com/3416672323xsaaa-svg/hrhr/main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4"
+    const videoSources = [
+      "https://raw.githubusercontent.com/3416672323xsaaa-svg/hrhr/main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4",
+      "https://cdn.jsdelivr.net/gh/3416672323xsaaa-svg/hrhr@main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4"
     ];
-
-    const video = document.getElementById("myVideo");
-    const status = document.getElementById("playStatus");
 
     let sourceIndex = 0;
     let fallbackUsed = false;
 
-    function setStatus(message, isError = false) {
+    function setStatus(message, type = "") {
       status.textContent = message;
-      status.classList.toggle("error", isError);
+      status.className = "player-status" + (type ? " " + type : "");
     }
 
     function loadSource(index) {
       sourceIndex = index;
-      video.src = VIDEO_URLS[index];
+      video.src = videoSources[index];
+      downloadButton.href = videoSources[index];
       video.load();
     }
 
-    video.addEventListener("loadstart", () => {
-      setStatus("正在加载视频……");
-    });
-
     video.addEventListener("loadedmetadata", () => {
-      const duration = video.duration;
-
-      if (Number.isFinite(duration)) {
-        const min = Math.floor(duration / 60);
-        const sec = Math.floor(duration % 60)
-          .toString()
-          .padStart(2, "0");
-
-        setStatus(`视频信息已加载，时长 ${min}:${sec}`);
-      } else {
-        setStatus("视频信息已加载。");
-      }
+      setStatus("视频加载完成，可以开始播放。", "success");
     });
 
     video.addEventListener("canplay", () => {
-      setStatus("视频已就绪，点击播放器中的播放按钮即可播放。");
+      setStatus("视频已准备就绪。", "success");
     });
 
     video.addEventListener("waiting", () => {
-      setStatus("视频缓冲中，请稍候……");
-    });
-
-    video.addEventListener("playing", () => {
-      setStatus("正在播放。");
+      setStatus("正在缓冲视频，请稍候……");
     });
 
     video.addEventListener("error", () => {
-      // CDN 地址失败时，自动尝试 GitHub 原始文件地址一次。
-      if (sourceIndex === 0 && !fallbackUsed) {
+      if (!fallbackUsed && sourceIndex < videoSources.length - 1) {
         fallbackUsed = true;
-        setStatus("CDN 加载失败，正在尝试备用地址……");
-        loadSource(1);
-        return;
+        setStatus("主地址加载失败，正在尝试备用地址……");
+        loadSource(sourceIndex + 1);
+      } else {
+        setStatus(
+          "视频加载失败。请检查 MP4 文件是否存在、仓库是否公开，或稍后重试。",
+          "error"
+        );
       }
+    });
 
-      const err = video.error;
-      let message = "视频加载失败，请检查文件地址和网络。";
-
-      if (err) {
-        switch (err.code) {
-          case MediaError.MEDIA_ERR_ABORTED:
-            message = "视频加载已取消。";
-            break;
-
-          case MediaError.MEDIA_ERR_NETWORK:
-            message = "网络错误：无法获取视频数据。";
-            break;
-
-          case MediaError.MEDIA_ERR_DECODE:
-            message = "视频解码失败：文件可能损坏或编码不受支持。";
-            break;
-
-          case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-            message = "视频源不可用、格式不受支持或服务器无法提供文件。";
-            break;
-        }
+    playButton.addEventListener("click", async () => {
+      try {
+        await video.play();
+      } catch (error) {
+        setStatus("暂时无法播放，请稍候再试，或直接点击播放器中的播放按钮。", "error");
       }
-
-      setStatus(message + " 请尝试下方的下载链接。", true);
     });
 
     loadSource(0);
