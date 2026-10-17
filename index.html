@@ -1,71 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN" translate="no">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google" content="notranslate">
-<title class="notranslate">ハラハラ‑sm9307581</title>
+<title>ハラハラ‑sm9307581</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
-.notranslate { translate: no !important; }
 body{background:#0c2222;color:#88e2bc;padding:22px}
-.container{max-width:530px;margin:24px auto}
-.card{background:#132f2f;border-radius:22px;padding:28px;margin-bottom:20px}
-.card h2{font-size:36px;margin-bottom:18px}
-.info{margin:9px 0;font-size:18px}
-img.thumb{width:100%;border-radius:14px;margin:14px 0}
-video{width:100%;border-radius:14px;margin:14px 0}
-.dl-text{margin:16px 0 12px 0;color:#99eed2}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.container{max-width:540px;margin:24px auto}
+.card{background:#132f2f;border-radius:22px;padding:28px}
+.card h2{font-size:34px;margin-bottom:18px}
+.line{margin:9px 0;font-size:17px}
+.label{margin:22px 0 12px;color:#99eed2;font-weight:bold}
+video{width:100%;border-radius:14px;margin:8px 0}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
 a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:13px;border-radius:14px;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="container" id="app">
-</div>
-
-<script>
-async function loadData(){
-// ✅这里彻底写死完整地址！再也不走坑人的相对路径！
-const res = await fetch("https://3416672323xsaaa.github.io/hrhr/data.json");
-const data = await res.json();
-const app = document.getElementById("app");
-
-let html = `
+<div class="container">
 <div class="card">
-  <h2 class="notranslate">${data.title}</h2>
-  <div class="info notranslate">视频ID：${data.smid}</div>
-  <div class="info notranslate">发布者：${data.author}</div>
-  <div class="info notranslate">发布时间：${data.time}</div>
-  <div class="info">时长：${data.duration}</div>
-  <div class="info">状态：${data.status}</div>
-`;
+  <h2>ハラハラ</h2>
+  <div class="line">動画ID：sm9307581</div>
+  <div class="line">ジャンル：‑</div>
+  <div class="line">投稿時間：2010年01月06日 14:20:59</div>
+  <div class="line">再生時間：1分11秒</div>
+  <div class="line">投稿者：裏切りマンキーコング (20)</div>
+  <div class="line">説明文：‑</div>
+  <div class="line">状態：削除/非表示</div>
+  <div class="line">登録タグ：必須アモト酸 エア本爆発祭'10 例のアレ サムネバキューム</div>
 
-if(data.thumb){
-html += `<img class="thumb notranslate" alt="${data.title}" src="${data.thumb}">`;
-}
-if(data.video){
-html += `
-<video controls>
-<source src="${data.video}" type="video/mp4">
-视频加载失败，请检查raw直链
-</video>`;
-}
+  <div class="label">播放</div>
+  <video controls>
+    <source src="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/hrhr%20%5Bsm9577483%5D.mp4" type="video/mp4">
+    ブラウザはこの動画を再生できません
+  </video>
 
-html += `
-<div class="dl-text">下载链接</div>
-<div class="btns">
-<a class="btn" href="${data.video}" target="_blank">下载</a>
-<a class="btn" href="${data.link1}" target="_blank">备用1</a>
-<a class="btn" href="${data.link2}" target="_blank">备用2</a>
-<a class="btn" href="${data.link3}" target="_blank">备用3</a>
+  <div class="label">ダウンロードリンク</div>
+  <div class="btns">
+    <a class="btn" href="https://github.com/3416672323xsaaa-svg/hrhr/raw/main/hrhr%20%5Bsm9577483%5D.mp4" target="_blank">直接ダウンロード</a>
+  </div>
 </div>
-</div>`;
-app.innerHTML = html;
-}
-loadData().catch(err=>{
-document.getElementById("app").innerText = "JSON读取失败："+err;
-});
-</script>
+</div>
 </body>
 </html>
