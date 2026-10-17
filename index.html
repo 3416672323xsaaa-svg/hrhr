@@ -22,16 +22,16 @@ a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:1
 </head>
 <body>
 <div class="container" id="app">
-  <!-- ⚠️这里已经完全清空！再也没有「悬疑」！所有内容由JSON输出 -->
 </div>
 
 <script>
 async function loadData(){
-  const res = await fetch("hara.json");
-  const data = await res.json();
-  const app = document.getElementById("app");
+// ✅这里彻底写死完整地址！再也不走坑人的相对路径！
+const res = await fetch("https://3416672323xsaaa.github.io/hrhr/data.json");
+const data = await res.json();
+const app = document.getElementById("app");
 
-  let html = `
+let html = `
 <div class="card">
   <h2 class="notranslate">${data.title}</h2>
   <div class="info notranslate">视频ID：${data.smid}</div>
@@ -41,31 +41,30 @@ async function loadData(){
   <div class="info">状态：${data.status}</div>
 `;
 
-  if(data.thumb){
-    html += `<img class="thumb notranslate" alt="${data.title}" src="${data.thumb}">`;
-  }
-
-  if(data.video){
-    html += `
+if(data.thumb){
+html += `<img class="thumb notranslate" alt="${data.title}" src="${data.thumb}">`;
+}
+if(data.video){
+html += `
 <video controls>
-  <source src="${data.video}" type="video/mp4">
-  视频加载失败，请检查raw直链
+<source src="${data.video}" type="video/mp4">
+视频加载失败，请检查raw直链
 </video>`;
-  }
+}
 
-  html += `
+html += `
 <div class="dl-text">下载链接</div>
 <div class="btns">
-  <a class="btn" href="${data.video}" target="_blank">下载</a>
-  <a class="btn" href="${data.link1}" target="_blank">备用1</a>
-  <a class="btn" href="${data.link2}" target="_blank">备用2</a>
-  <a class="btn" href="${data.link3}" target="_blank">备用3</a>
+<a class="btn" href="${data.video}" target="_blank">下载</a>
+<a class="btn" href="${data.link1}" target="_blank">备用1</a>
+<a class="btn" href="${data.link2}" target="_blank">备用2</a>
+<a class="btn" href="${data.link3}" target="_blank">备用3</a>
 </div>
 </div>`;
-  app.innerHTML = html;
+app.innerHTML = html;
 }
 loadData().catch(err=>{
-  document.getElementById("app").innerText = "JSON读取失败："+err;
+document.getElementById("app").innerText = "JSON读取失败："+err;
 });
 </script>
 </body>
