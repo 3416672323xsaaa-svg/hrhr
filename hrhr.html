@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>资料索引</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:#121216;
+  color:#e9e9ef;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  padding:24px 16px;
+  line-height:1.55;
+}
+.container{
+  max-width:680px;
+  margin:0 auto;
+}
+h1{
+  font-size:34px;
+  margin-bottom:28px;
+  color:#f0f0f8;
+  font-weight:600;
+  letter-spacing:1px;
+}
+.divider{
+  height:2px;
+  background:#2a2a33;
+  margin-bottom:32px;
+  border-radius:99px;
+}
+.card{
+  background:#1b1b24;
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:22px;
+  box-shadow:0 6px 22px rgba(0,0,0,0.35);
+  border:1px solid #272734;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow:0 10px 28px rgba(0,0,0,0.42);
+}
+.card-title{
+  font-size:26px;
+  font-weight:600;
+  margin-bottom:14px;
+  color:#ffffff;
+}
+.meta-line{
+  font-size:15px;
+  color:#b4b4c8;
+  margin:6px 0;
+}
+.tags-wrap{
+  margin:18px 0;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.tag{
+  background:#2c2c3d;
+  color:#e2e6f2;
+  padding:6px 12px;
+  border-radius:12px;
+  font-size:14px;
+}
+.thumb-box{
+  width:100%;
+  margin-top:12px;
+  border-radius:14px;
+  overflow:hidden;
+  background:#0a0a0e;
+}
+.thumb-box img{
+  width:100%;
+  display:block;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>悬疑</h1>
+  <div class="divider"></div>
+
+  <div id="cardList">
+    <!-- JS渲染卡片在这里 -->
+  </div>
+</div>
+
+<script>
+// 如果你的数据文件名还是 data.json 就不用动
+fetch("data.json")
+.then(res=>res.json())
+.then(list=>{
+  const wrap=document.getElementById("cardList");
+  list.forEach(item=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`
+      <div class="card-title">${item.title}</div>
+      <div class="meta-line">视频ID：${item.sm}</div>
+      <div class="meta-line">发布者：${item.author}</div>
+      <div class="meta-line">发布时间：${item.date}</div>
+      <div class="meta-line">时长：${item.duration}</div>
+      <div class="meta-line">状态：${item.status}</div>
+      <div class="tags-wrap">
+        ${item.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+      </div>
+      <div class="thumb-box">
+        <img src="${item.thumb}" alt="缩略图" loading="lazy">
+      </div>
+    `;
+    wrap.appendChild(div);
+  })
+})
+.catch(err=>{
+  document.getElementById("cardList").innerHTML=`<div style="color:#ff8888">读取数据失败：${err}</div>`;
+});
+</script>
+</body>
+</html>
