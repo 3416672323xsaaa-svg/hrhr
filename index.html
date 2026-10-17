@@ -33,9 +33,8 @@ a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:1
   <div class="line">登録タグ：必須アモト酸、空気書爆発祭'10、那東西、縮略圖、真空</div>
 
   <div class="label">播放</div>
-  <video controls preload="metadata" crossorigin="anonymous">
-    <source src="https://cdn.jsdelivr.net/gh/3416672323xsaaa-svg/hrhr@main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4" type="video/mp4">
-    浏览器不支持播放，请下载后观看
+  <video id="myVideo" controls preload="metadata" crossorigin="anonymous">
+    <p>浏览器不支持播放，请下载后观看</p>
   </video>
 
   <div class="label">下载链接</div>
@@ -44,5 +43,18 @@ a.btn{display:block;text-align:center;background:#20594e;color:#b2f2dd;padding:1
   </div>
 </div>
 </div>
+
+<script>
+// 使用带 @main 的标准 jsDelivr 地址，没有外部代理
+const videoUrl = "https://cdn.jsdelivr.net/gh/3416672323xsaaa-svg/hrhr@main/%E3%83%8F%E3%83%A9%E3%83%8F%E3%83%A9%20%5Bsm9307581%5D.mp4";
+window.addEventListener("DOMContentLoaded", function(){
+  const v = document.getElementById("myVideo");
+  // 微小延时，让CDN的重定向链路完成
+  setTimeout(()=>{
+    v.src = videoUrl;
+    v.load();
+  },350);
+});
+</script>
 </body>
 </html>
